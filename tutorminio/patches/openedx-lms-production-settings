@@ -6,3 +6,27 @@ PROFILE_IMAGE_BACKEND = {
         "location": PROFILE_IMAGE_BACKEND["options"]["location"].lstrip("/"),
     },
 }
+PROGRAM_IMAGE_BACKEND = {
+    "class": DEFAULT_FILE_STORAGE,
+    "options": {
+        "bucket_name": "{{ MINIO_BUCKET_NAME }}",
+        "querystring_auth": False,
+        "location": PROGRAM_IMAGE_BACKEND["options"]["location"].lstrip("/"),
+    },
+}
+BANNER_IMAGE_BACKEND = {
+    "class": DEFAULT_FILE_STORAGE,
+    "options": {
+        "bucket_name": "{{ MINIO_BUCKET_NAME }}",
+        "querystring_auth": False,
+        "location": BANNER_IMAGE_BACKEND["options"]["location"].lstrip("/"),
+    },
+}
+ORGANISATION_LOGO_BACKEND = {
+    "class": DEFAULT_FILE_STORAGE,
+    "options": {
+        "bucket_name": "{{ MINIO_BUCKET_NAME }}",
+        "querystring_auth": False,
+        "location": ORGANISATION_LOGO_BACKEND["options"]["location"].lstrip("/"),
+    },
+}
