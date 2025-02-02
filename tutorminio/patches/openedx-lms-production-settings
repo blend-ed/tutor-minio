@@ -30,3 +30,11 @@ ORGANISATION_LOGO_BACKEND = {
         "location": ORGANISATION_LOGO_BACKEND["options"]["location"].lstrip("/"),
     },
 }
+DOCUMENT_STORAGE_BACKEND = {
+    "class": DEFAULT_FILE_STORAGE,
+    "options": {
+        "bucket_name": "{{ MINIO_BUCKET_NAME }}",
+        "querystring_auth": False,
+        "location": DOCUMENT_STORAGE_BACKEND["options"]["location"].lstrip("/"),
+    },
+}
