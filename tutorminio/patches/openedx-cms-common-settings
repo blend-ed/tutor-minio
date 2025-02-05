@@ -1,1 +1,9 @@
 COURSE_IMPORT_EXPORT_STORAGE = USER_TASKS_ARTIFACT_STORAGE
+DOCUMENT_STORAGE_BACKEND = {
+    "class": DEFAULT_FILE_STORAGE,
+    "options": {
+        "bucket_name": "{{ MINIO_BUCKET_NAME }}",
+        "querystring_auth": False,
+        "location": DOCUMENT_STORAGE_BACKEND["options"]["location"].lstrip("/"),
+    },
+}
