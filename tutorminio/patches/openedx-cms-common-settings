@@ -12,6 +12,5 @@ H5PXBLOCK_STORAGE = {
     "settings": {
         "bucket_name": "{{ MINIO_BUCKET_NAME }}",
         "querystring_auth": False,
-        "location": H5PXBLOCK_STORAGE["options"]["location"].lstrip("/"),
     },
 }
