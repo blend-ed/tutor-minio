@@ -7,3 +7,11 @@ DOCUMENT_STORAGE_BACKEND = {
         "location": DOCUMENT_STORAGE_BACKEND["options"]["location"].lstrip("/"),
     },
 }
+H5PXBLOCK_STORAGE = {
+    "storage_class": DEFAULT_FILE_STORAGE,
+    "settings": {
+        "bucket_name": "{{ MINIO_BUCKET_NAME }}",
+        "querystring_auth": False,
+        "location": H5PXBLOCK_STORAGE["options"]["location"].lstrip("/"),
+    },
+}
