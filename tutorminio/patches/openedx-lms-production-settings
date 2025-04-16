@@ -45,3 +45,11 @@ H5PXBLOCK_STORAGE = {
         "querystring_auth": False,
     },
 }
+AI_COURSE_FILES_STORAGE_BACKEND = {
+    "storage_class": DEFAULT_FILE_STORAGE,
+    "settings": {
+        "bucket_name": "{{ MINIO_BUCKET_NAME }}",
+        "querystring_auth": False,
+        "location": AI_COURSE_FILES_STORAGE_BACKEND["options"]["location"].lstrip("/"),
+    },
+}
