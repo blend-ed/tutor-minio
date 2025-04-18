@@ -7,18 +7,18 @@ DOCUMENT_STORAGE_BACKEND = {
         "location": DOCUMENT_STORAGE_BACKEND["options"]["location"].lstrip("/"),
     },
 }
+AI_COURSE_FILES_STORAGE_BACKEND = {
+    "class": DEFAULT_FILE_STORAGE,
+    "options": {
+        "bucket_name": "{{ MINIO_BUCKET_NAME }}",
+        "querystring_auth": False,
+        "location": AI_COURSE_FILES_STORAGE_BACKEND["options"]["location"].lstrip("/"),
+    },
+}
 H5PXBLOCK_STORAGE = {
     "storage_class": DEFAULT_FILE_STORAGE,
     "settings": {
         "bucket_name": "{{ MINIO_BUCKET_NAME }}",
         "querystring_auth": False,
-    },
-}
-AI_COURSE_FILES_STORAGE_BACKEND = {
-    "storage_class": DEFAULT_FILE_STORAGE,
-    "settings": {
-        "bucket_name": "{{ MINIO_BUCKET_NAME }}",
-        "querystring_auth": False,
-        "location": AI_COURSE_FILES_STORAGE_BACKEND["options"]["location"].lstrip("/"),
     },
 }
