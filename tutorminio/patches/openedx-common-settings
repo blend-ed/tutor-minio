@@ -1,7 +1,7 @@
 DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 VIDEO_IMAGE_SETTINGS["STORAGE_KWARGS"]["location"] = VIDEO_IMAGE_SETTINGS["STORAGE_KWARGS"]["location"].lstrip("/")
 VIDEO_TRANSCRIPTS_SETTINGS["STORAGE_KWARGS"]["location"] = VIDEO_TRANSCRIPTS_SETTINGS["STORAGE_KWARGS"]["location"].lstrip("/")
-GRADES_DOWNLOAD["STORAGE_KWARGS"] = {"location": GRADES_DOWNLOAD["STORAGE_KWARGS"]["location"].lstrip("/")}
+GRADES_DOWNLOAD["STORAGE_KWARGS"]["location"] = GRADES_DOWNLOAD["STORAGE_KWARGS"]["location"].lstrip("/")
 GRADES_DOWNLOAD["STORAGE_KWARGS"]["bucket_name"] = "{{ MINIO_GRADES_BUCKET_NAME }}"
 
 # Ora2 setting
@@ -15,3 +15,14 @@ AWS_DEFAULT_ACL = None
 AWS_QUERYSTRING_EXPIRE = 7 * 24 * 60 * 60  # 1 week: this is necessary to generate valid download urls
 
 MINIO_BASE_URL = '{% if ENABLE_HTTPS %}https://{{ MINIO_HOST}}{% else %}http://{{ MINIO_HOST }}:9000{% endif %}'
+
+# User tasks assets storage
+# In theory we could use cms.djangoapps.contentstore.storage.ImportExportS3Storage,
+# but this class makes use of boto, which does not support sig3v4 auth.
+from storages.backends.s3boto3 import S3Boto3Storage
+class MinIOStorage(S3Boto3Storage):  # pylint: disable=abstract-method
+    def __init__(self):
+        bucket = "{{ MINIO_BUCKET_NAME }}"
+        super().__init__(bucket_name=bucket, custom_domain=None, querystring_auth=True)
+
+USER_TASKS_ARTIFACT_STORAGE = f"{__name__}.MinIOStorage"
